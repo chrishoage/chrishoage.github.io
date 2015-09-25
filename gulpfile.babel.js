@@ -2,6 +2,7 @@ import gulp from 'gulp'
 import path from 'path'
 import gulpif from 'gulp-if'
 import gutil from 'gulp-util'
+import deploy from 'gulp-gh-pages'
 import del from 'del'
 import merge from 'lodash.merge'
 import runSequence from 'run-sequence'
@@ -148,6 +149,14 @@ gulp.task('dev-server', () => {
     if (err) throw new gutil.PluginError('webpack', err)
     gutil.log('[dev-server]', 'listening on', gutil.colors.cyan(`http://${HOST}:${PORT}`))
   })
+})
+
+gulp.task('deploy', () => {
+  return gulp.src(paths.dist)
+             .pipe(deploy({
+                branch: 'master',
+                push: false
+             }))
 })
 
 gulp.task('watch', () => {
