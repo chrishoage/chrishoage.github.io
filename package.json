@@ -7,6 +7,7 @@
   "scripts": {
     "start": "gulp dev",
     "build": "NODE_ENV=production gulp",
+    "deploy": "NODE_ENV=production gulp deploy",
     "prodtest": "NODE_ENV=production gulp dev"
   },
   "author": "Chris Hoage",

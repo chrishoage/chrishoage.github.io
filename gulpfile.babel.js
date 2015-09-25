@@ -165,11 +165,11 @@ gulp.task('dev-server', () => {
   })
 })
 
-gulp.task('deploy', () => {
+gulp.task('deploy', ['default'], () => {
   return gulp.src(paths.dist)
              .pipe(deploy({
-                branch: 'master',
-                push: false
+               branch: 'master',
+               push: false
              }))
 })
 
