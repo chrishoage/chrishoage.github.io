@@ -46,15 +46,21 @@ function generateWebpackConfig(env) {
       pathinfo: !isProd
     },
     module: {
-      loaders: [{
-        test: /.js?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        include: fullPath(paths.js)
-      }, {
-        test: /.json$/,
-        loader: 'json'
-      }]
+      loaders: [
+        {
+          test: /.js?$/,
+          exclude: /(node_modules|bower_components)/,
+          loader: 'babel',
+          include: fullPath(paths.js)
+        }, {
+          test: /.json$/,
+          loader: 'json'
+        },
+        {
+          test: /\.otf|eot|svg|ttf|woff|woff2(\?.+)$/,
+          loader: 'url-loader?limit=8192'
+        }
+      ]
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -84,6 +90,10 @@ function generateWebpackConfig(env) {
         module: {
           loaders: [
             {
+              test: /\.css$/,
+              loader: 'style!css'
+            },
+            {
               test: /\.scss$/,
               loader: 'style!css!autoprefixer!sass?includePaths[]=' + fullPath(paths.scss)
             }
@@ -101,6 +111,10 @@ function generateWebpackConfig(env) {
         ],
         module: {
           loaders: [
+            {
+              test: /\.css$/,
+              loader: ExtractTextPlugin.extract('css')
+            },
             {
               test: /\.scss$/,
               loader: ExtractTextPlugin.extract('css!autoprefixer!sass?includePaths[]=' + fullPath(paths.scss))
