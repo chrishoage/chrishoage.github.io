@@ -8,7 +8,7 @@ export default class DropIn {
     const child = Children.only(this.props.children)
 
     return (
-      <Spring defaultValue={{val: -200}} endValue={{val: 0, config: [120, 14]}}>
+      <Spring defaultValue={{val: -1000}} endValue={{val: 0}}>
         {(interpolated) => cloneElement(child, {
           style: {
             transform: `translate3d(0, ${interpolated.val}%, 0)`,
