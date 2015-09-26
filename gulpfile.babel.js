@@ -28,7 +28,7 @@ const deepMergeClone = (...sources) => merge({}, ...sources, (a, b) => {
 })
 
 const paths = {
-  src:   ['./src/**', '!./src/js{,/**}', '!./src/scss{,/**}'],
+  src:   ['./src/**', './README.md', '!./src/js{,/**}', '!./src/scss{,/**}'],
   js:    './src/js',
   scss:  './src/scss',
   entry: './src/js/app.js',
