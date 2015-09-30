@@ -1,20 +1,24 @@
 import React, { PropTypes, Children, cloneElement } from 'react'
-import { Spring } from 'react-motion'
+import { Motion, spring } from 'react-motion'
 
 export default class DropIn {
+
+  static propTypes = {
+    children: PropTypes.node
+  }
 
   render() {
 
     const child = Children.only(this.props.children)
 
     return (
-      <Spring defaultValue={{val: -1000}} endValue={{val: 0}}>
-        {(interpolated) => cloneElement(child, {
+      <Motion defaultStyle={{y: -1000}} style={{y: spring(0)}}>
+	{(style) => cloneElement(child, {
           style: {
-            transform: `translate3d(0, ${interpolated.val}%, 0)`,
+	    transform: `translate3d(0, ${style.y}%, 0)`,
           }
         })}
-      </Spring>
+      </Motion>
     )
   }
 }

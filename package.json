@@ -49,6 +49,6 @@
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
     "react-fa": "^4.0.0",
-    "react-motion": "^0.2.7"
+    "react-motion": "^0.3.0"
   }
 }
