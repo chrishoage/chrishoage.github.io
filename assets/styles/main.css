@@ -1,0 +1,83 @@
+:root {
+  --primary-color: #262626;
+  --accent-color: #1d9099;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--primary-color);
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "Quicksand";
+  font-weight: 400;
+  font-size: 5em;
+  margin: 0;
+}
+
+.container {
+  margin: auto;
+}
+
+.pill-box {
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+  min-width: 80px;
+  color: var(--primary-color);
+  background: var(--accent-color);
+  text-align: center;
+
+  a {
+    display: block;
+    color: var(--primary-color);
+  }
+}
+
+.pill-box-inline {
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .pill-box-inline {
+    display: block;
+  }
+}
+
+.drop-in {
+  animation: drop-in 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes drop-in {
+  from {
+    transform: translate3d(0px, -1000%, 0px);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0px, 0%, 0px);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 2s forwards cubic-bezier(0.65, 0, 0.35, 1);
+  animation-delay: calc(var(--animation-order) * 100ms);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
