@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Start</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      :root {
+        --transparent: #ffffff00;
+
+        --background: #242b2e;
+        --backgroundDark: #171c1c;
+        --backgroundLight: #333d3d;
+
+        --foreground: #d4d4d4;
+        --foregroundDark: #808080;
+
+        --black: #d4d4d4;
+        --red: #e15a60;
+        --green: #99c794;
+        --yellow: #fac863;
+        --blue: #6699cc;
+        --magenta: #c594c5;
+        --cyan: #5fb3b3;
+        --white: #d4d4d4;
+      }
+
+      body {
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+        background-color: var(--background);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      .container a {
+        box-sizing: border-box;
+        aspect-ratio: 2/1.25;
+        font-size: clamp(1rem, -0.875rem + 8.333vw, 10rem);
+        background-color: var(--backgroundLight);
+        color: var(--foreground);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        text-decoration: none;
+      }
+
+      .container a:hover,
+      .container a:focus {
+        /* color: var(--foregroundDark); */
+        border: 2px solid var(--blue);
+        background-color: var(--backgroundDark);
+        outline: none;
+      }
+    </style>
+
+    <script>
+      const numberKeyCodes = [
+        "Digit1",
+        "Digit2",
+        "Digit3",
+        "Digit4",
+        "Digit5",
+        "Digit6",
+        "Digit7",
+        "Digit8",
+        "Digit9",
+        "Digit0",
+      ];
+
+      let keyPressCount = 0;
+
+      document.addEventListener("keydown", (event) => {
+        const keyCodeIndex = numberKeyCodes.indexOf(event.code);
+
+        if (!(document.activeElement instanceof HTMLAnchorElement)) {
+          keyPressCount++;
+        }
+
+        console.log(keyPressCount, event);
+
+        if (keyCodeIndex < 0) {
+          return;
+        }
+
+        const links = document.querySelectorAll(".container a");
+        const isShift = event.shiftKey;
+        const number = isShift ? keyCodeIndex + 10 : keyCodeIndex;
+
+        const link = links.item(number);
+        link?.focus();
+      });
+
+      document.addEventListener("keyup", (event) => {
+        if (
+          document.activeElement instanceof HTMLAnchorElement &&
+          --keyPressCount === 0
+        ) {
+          document.activeElement.click();
+        }
+
+        console.log(keyPressCount, document.activeElement);
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <a href="https://facebook.com" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://instagram.com" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://twitter.com" title="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://reddit.com" title="Reddit">
+        <i class="fab fa-reddit"></i>
+      </a>
+
+      <a href="https://app.plex.tv" title="Plex">
+        <i class="fas fa-chevron-circle-right"></i>
+      </a>
+      <a href="https://mail.google.com" title="Mail">
+        <i class="far fa-envelope"></i>
+      </a>
+      <a href="https://mint.intuit.com/" title="Mint">
+        <i class="fas fa-leaf"></i>
+      </a>
+      <a href="https://github.com/" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+
+      <a href="https://youtube.com" title="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="http://hass" title="Home Assistant">
+        <i class="fas fa-home"></i>
+      </a>
+      <a href="https://steamcommunity.com/chat/" title="Steam Chat">
+        <i class="fab fa-steam"></i>
+      </a>
+      <a href="https://discord.com/channels/@me" title="Discord">
+        <i class="fab fa-discord"></i>
+      </a>
+    </div>
+  </body>
+</html>
